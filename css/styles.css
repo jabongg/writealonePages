@@ -1,0 +1,15 @@
+
+		body{ background: url('./lady_writing.jpg') no-repeat center center fixed; 
+		 -webkit-background-size: cover;
+		 -moz-background-size: cover;
+		 -o-background-size: cover;
+		 background-size: cover;
+		}
+
+		.panel-default {
+			opacity: 0.9;
+			margin-top: 104px;
+		}
+		.form-group.last {
+		 margin-bottom:0px;
+		}

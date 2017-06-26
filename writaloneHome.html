@@ -4,12 +4,13 @@
 
 
  <title>writealone</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 
+ 
+ <link rel="stylesheet" href="styles.css">
+ 
+    <link rel="stylesheet" href="css/bootstrap.css" >
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <style>
         body { 
@@ -26,6 +27,15 @@
 		}
 		.form-group.last {
 		 margin-bottom:0px;
+		}
+		
+		@media (min-width: 768px)
+		bootstrap.css:4186
+		.navbar-collapse.collapse {
+			display: block!important;
+			height: auto!important;
+			padding-bottom: 29px;
+			overflow: visible!important;
 		}
     </style>
 </head>
@@ -50,6 +60,25 @@
                     <li><a href="#poems"> Poems</a> </li>
                     <li><a href="#stories"> Stories</a> </li>
                 </ul>
+
+			
+				<div class="navbar-right">
+				<form class="form-inline ">
+				  
+				  <label class="sr-only" for="inlineFormInputGroup">Email</label>
+				  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+					<div class="input-group-addon">@</div>
+					<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email">
+				  </div>
+
+				  <label class="sr-only" for="inlineFormInput">Name</label>
+				  <input type="Password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Password">
+
+
+					  <button type="submit" class="btn btn-success">Login</button>
+				</form>
+				</div>
+			
             </div>
         </div>  <!--End Container-->
     </nav><!-- End Navbar -->
@@ -70,14 +99,14 @@
                        <label for="inputFirstName" class="col-sm-3 control-label">
                             Firstname</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="FirstName" required="">
+                            <input type="email" class="form-control" id="inputFirstName" placeholder="FirstName" required="">
                         </div>
                     </div>
 
 					<label for="inputLastName" class="col-sm-3 control-label">
                             Lastname</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="LastName" required="">
+                            <input type="email" class="form-control" id="inputLastName" placeholder="LastName" required="">
                         </div>
 
 
