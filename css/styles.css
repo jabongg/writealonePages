@@ -16,7 +16,7 @@
 		}
 
 		.footer {
-		  position: absolute;
+		  position: fixed;
 		  bottom: 0;
 		  width: 100%;
 		  /* Set the fixed height of the footer here */
@@ -31,8 +31,13 @@
 			margin-left: inherit;
 			margin-top: inherit;
 		}
+	
 		
-	.navbar-inverse{
-		background-color:white !important;
-		border-color:white !important;
-	}
+		.navbar-toggle {
+			background-color: #222;
+		}
+		
+		.navbar-inverse{
+			background-color:white !important;
+			border-color:white !important;
+		}
