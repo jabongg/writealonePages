@@ -37,8 +37,83 @@ app.get('/', function(request, result) {
 
 
 // API ROUTES -------------------
-// we'll get to these in a second
 
+// get an instance of the router for api routes
+var apiRoutes  = express.Router();
+// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+
+apiRoutes.post('/authenticate', function(request, result) {
+   // find the user
+   User.findOne({
+     name : request.body.name
+   }, function(err, user) {
+      if (err) {
+        throw err;
+      }
+
+      if (!user) {
+        console.log('User authentication failed! User not found');
+      //  result.json({ success : false, message : 'User authentication failed! User not found'});
+      } else if (user) {
+          // check if password matches
+          if (user.password != request.body.password) {
+              console.log('Authentication failed. Wrong password.');
+          //   res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+          } else {
+            // if user is found and password is right
+            // create a token
+            console.log('creating your token');
+
+            var token = jwt.sign(user, app.get('superSecret'), {
+               expiresInMinutes: 1440 // expires in 24 hours
+            });
+
+             // return the information including token as JSON
+             result.json({
+               success  : true,
+               message  : 'Enjoy your token',
+               token    : token
+             });
+          }
+      }
+   });
+});
+
+// TODO: route middleware to verify a token
+
+// route to show a random message (GET http://localhost:8080/api/)
+apiRoutes.get('/', function (request, result) {
+  result.json({ message : 'welcome to writealone!'});
+});
+
+// route to return all users (GET http://localhost:8080/api/users)
+apiRoutes.get('/users', function (request, result) {
+  User.find({}, function(error, users) {
+    result.send(users);
+  });
+});
+
+// apply the routes to our application with the prefix /api
+app.use('/api', apiRoutes);
+
+app.get('/setup', function(request, result) {
+   // create a sample user
+   var mike = new User({
+     name      : 'Mike McLeneghan',
+     password  : 'password',
+     admin     : true
+   });
+
+    // save the sample user
+    mike.save(function(error) {
+      if (error) {
+        throw error;
+      }
+
+      console.log('user saved successfully in db');
+      result.json({ success : true });
+    });
+});
 
 // =======================
 // start the server ======
