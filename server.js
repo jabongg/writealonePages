@@ -40,44 +40,7 @@ app.get('/', function(request, result) {
 
 // get an instance of the router for api routes
 var apiRoutes  = express.Router();
-// route to authenticate a user (POST http://localhost:8080/api/authenticate)
 
-apiRoutes.post('/authenticate', function(request, result) {
-   // find the user
-   User.findOne({
-     name : request.body.name
-   }, function(err, user) {
-      if (err) {
-        throw err;
-      }
-
-      if (!user) {
-        console.log('User authentication failed! User not found');
-      //  result.json({ success : false, message : 'User authentication failed! User not found'});
-      } else if (user) {
-          // check if password matches
-          if (user.password != request.body.password) {
-              console.log('Authentication failed. Wrong password.');
-          //   res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-          } else {
-            // if user is found and password is right
-            // create a token
-            console.log('creating your token');
-
-            var token = jwt.sign(user, app.get('superSecret'), {
-               expiresInMinutes: 1440 // expires in 24 hours
-            });
-
-             // return the information including token as JSON
-             result.json({
-               success  : true,
-               message  : 'Enjoy your token',
-               token    : token
-             });
-          }
-      }
-   });
-});
 
 // TODO: route middleware to verify a token
 
@@ -99,8 +62,8 @@ app.use('/api', apiRoutes);
 app.get('/setup', function(request, result) {
    // create a sample user
    var mike = new User({
-     name      : 'Mike McLeneghan',
-     password  : 'password',
+     name      : 'jb',
+     password  : 'jb',
      admin     : true
    });
 
@@ -114,6 +77,53 @@ app.get('/setup', function(request, result) {
       result.json({ success : true });
     });
 });
+
+
+// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+apiRoutes.post('/authenticate', function(req, res) {
+
+console.log('req.body.name' + req.body.name);
+console.log('req.body.password' + req.body.password);
+
+console.log('response' + res);
+
+
+  // find the user
+  User.findOne({
+    name: req.body.name
+  }, function(err, user) {
+
+    if (err) throw err;
+
+    if (!user) {
+      console.log(user);
+      res.json({ success: false, message: 'Authentication failed. User not found.' });
+    } else if (user) {
+
+      // check if password matches
+      if (user.password != req.body.password) {
+        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+      } else {
+
+        // if user is found and password is right
+        // create a token
+        var token = jwt.sign(user, app.get('superSecret'), {
+          expiresInMinutes: 1440 // expires in 24 hours
+        });
+
+        // return the information including token as JSON
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        });
+      }
+
+    }
+
+  });
+});
+
 
 // =======================
 // start the server ======
