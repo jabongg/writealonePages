@@ -1,4 +1,8 @@
 {
   "name": "node-token-jwt",
-  "main": "server.js"
+  "main": "server.js",
+  "dependencies": {
+    "mongodb": "^2.2.30",
+    "mongoose": "4.1.9"
+  }
 }
