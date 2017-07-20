@@ -9,6 +9,8 @@ var morgan      = require('morgan');
 var mongoose    = require('mongoose'); // used to handle queries related to database
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
+var passport = require('passport');
+
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended : false  }));
 app.use(bodyParser.json());
@@ -35,6 +37,7 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
+/*
 app.set('superSecret',config.secret);  //secret variable
 
 // =======================
@@ -47,6 +50,18 @@ app.get('/', function(request, result) {
 
 
 // API ROUTES -------------------
+
+// facebook routes for signup and login
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 
 // get an instance of the router for api routes
 var apiRoutes  = express.Router();
@@ -71,7 +86,8 @@ app.get('/setup', function(request, result) {
       result.json({ success : true });
     });
 });
-
+*/
+/*
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -152,9 +168,9 @@ console.log(req.headers['x-access-token']);
 
   }
 });
+*/
 
-
-
+/*
 // route to show a random message (GET http://localhost:8080/api/)
 apiRoutes.get('/', function (request, result) {
   result.json({ message : 'welcome to writealone!'});
@@ -166,7 +182,7 @@ apiRoutes.get('/users', function (request, result) {
     result.send(users);
   });
 });
-
+*/
 
 
 // =======================
