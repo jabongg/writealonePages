@@ -23,7 +23,18 @@ app.use(morgan('dev'));
 // configuration =========
 // =======================
 var port = process.env.PORT || 3000; // used to create, sign, and verify tokens
-mongoose.connect(config.database);  // connect to database
+//mongoose.connect(config.database);  // connect to database
+
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+
+var url = config.database;
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to server.");
+  db.close();
+});
+
 app.set('superSecret',config.secret);  //secret variable
 
 // =======================
