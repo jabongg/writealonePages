@@ -26,6 +26,29 @@ app.set('superSecret',config.secret);  //secret variable
 app.use(bodyParser.urlencoded({ extended : true  }));
 app.use(bodyParser.json());
 
+//figlet
+var figlet = require('figlet');
+
+  console.log(figlet.textSync('writealone', {
+      horizontalLayout: 'default',
+      verticalLayout: 'default'
+  }));
+
+
+/*
+figlet('writealone', function(err, data) {
+    if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+    }
+    console.log(data)
+});
+
+figlet();
+
+*/
+
 // API ROUTES -------------------
 
 // get an instance of the router for api routes
@@ -33,7 +56,7 @@ app.use(bodyParser.json());
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 //apiRoutes.post('/authenticate', function(req, res) {
-app.post('/authenticate', function(req, res) {
+/*app.post('/authenticate', function(req, res) {
 console.log('req.body.name' + req.body.name);
 console.log('req.body.password' + req.body.password);
 
@@ -75,7 +98,7 @@ console.log('response' + res);
   });
 });
 
-
+*/
 // =======================
 // configuration =========
 // =======================
