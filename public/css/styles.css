@@ -1,11 +1,9 @@
-		body{ background: url('../images/lady_writing.jpg') no-repeat center center fixed;
+ 		body{ background: url('../images/street-art-pixabay.jpg') no-repeat center center fixed;
 		 -webkit-background-size: cover;
 		 -moz-background-size: cover;
 		 -o-background-size: cover;
 		 background-size: cover;
 		}
-
-	
 
 		.panel-default {
 			opacity: 0.9;

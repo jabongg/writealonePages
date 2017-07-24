@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html ng-app="writealoneApp">
+<head>
+ <title>writealone</title>
+	<link rel="icon" href="images/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.css" >
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="libraries/bootstrap.min.js"></script>
+	<script src="libraries/angular.min.js"></script>
+	<script src="libraries/angular-route.min.js"></script>
+    
+	<!--routes-->
+	<script src="js/template_route.js"></script>
+	
+</head>
+
+<body ng-controller="homeController">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle"
+                        data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+		   <a href="#home" class="navbar-brand brand-name writealone_logo">
+         <img src="images/wa_logo.png" height="50px" width="100px" />
+		   </a>
+
+            </div>  <!--Navbar Header-->
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+
+				<div class="navbar-right">
+				<form class="form-inline ">
+
+				  <label class="sr-only" for="inlineFormInputGroup">Email</label>
+				  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+					<div class="input-group-addon">@</div>
+					<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Email">
+				  </div>
+
+				  <label class="sr-only" for="inlineFormInput">Name</label>
+				  <input type="Password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Password">
+
+
+					  <button type="submit" class="btn btn-success">Login</button>
+				</form>
+				</div>
+
+            </div>
+        </div>  <!--End Container-->
+    </nav><!-- End Navbar -->
+
+  <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
+    
+  </div>
+  
+ <footer class="footer">
+      <div class="container">
+        <span class="text-muted">© 2017 writealone.com</span>
+      </div>
+ </footer>
+
+
+</body>
+</html>

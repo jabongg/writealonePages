@@ -22,6 +22,9 @@ app.use(morgan('dev'));
 mongoose.connect(config.database);  // connect to database
 app.set('superSecret',config.secret);  //secret variable
 
+
+app.use(express.static('./public')); 		// set the static files location /public/img will be /img for users
+
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended : true  }));
 app.use(bodyParser.json());
@@ -29,12 +32,21 @@ app.use(bodyParser.json());
 //figlet
 var figlet = require('figlet');
 
-  console.log(figlet.textSync('writealone', {
+  console.log(figlet.textSync('adish', {
       horizontalLayout: 'default',
       verticalLayout: 'default'
   }));
 
+/* // crypto 
+  const crypto = require('crypto');
 
+  const secret = 'abcdefg';
+  const hash = crypto.createHmac('sha256', secret)
+                     .update('I love cupcakes')
+                     .digest('hex');
+  console.log(hash);
+ */
+ 
 /*
 figlet('writealone', function(err, data) {
     if (err) {
@@ -103,6 +115,11 @@ console.log('response' + res);
 // configuration =========
 // =======================
 var port = process.env.PORT || 3000; // used to create, sign, and verify tokens
+
+// application -------------------------------------------------------------
+app.get('*', function (req, res) {
+	res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 // =======================
 // start the server ======
